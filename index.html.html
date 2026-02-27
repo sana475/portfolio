@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sana Ghazali | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0a0f;--surface:#111118;--card:#16161f;--accent:#7cffd4;--accent2:#ff6b9d;--text:#e8e8f0;--muted:#7070a0;--border:rgba(124,255,212,0.12)}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 4rem;display:flex;justify-content:space-between;align-items:center;background:rgba(10,10,15,.8);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:900;color:var(--accent)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{text-decoration:none;color:var(--muted);font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--accent)}
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:8rem 4rem 4rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(124,255,212,.06) 0%,transparent 70%);top:-100px;right:-100px;pointer-events:none}
+.hero-text{position:relative;z-index:1}
+.hero-tag{font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);display:inline-block;padding:.35rem .9rem;border-radius:2px;margin-bottom:1.5rem;animation:fadeUp .6s ease both}
+.hero-name{font-family:'Playfair Display',serif;font-size:clamp(3rem,5.5vw,5rem);font-weight:900;line-height:1;letter-spacing:-.03em;margin-bottom:.5rem;animation:fadeUp .6s .1s ease both}
+.hero-name span{color:var(--accent)}
+.hero-role{font-family:'DM Mono',monospace;font-size:.9rem;color:var(--muted);margin-bottom:2rem;animation:fadeUp .6s .2s ease both}
+.hero-bio{font-size:1rem;line-height:1.8;color:#a0a0c0;max-width:480px;margin-bottom:2.5rem;animation:fadeUp .6s .3s ease both}
+.hero-btns{display:flex;gap:1rem;animation:fadeUp .6s .4s ease both}
+.btn{padding:.75rem 1.8rem;border-radius:4px;font-family:'DM Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:all .2s;cursor:pointer;border:none}
+.btn-primary{background:var(--accent);color:var(--bg);font-weight:500}
+.btn-primary:hover{background:#5de8bc;transform:translateY(-2px)}
+.btn-secondary{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.btn-secondary:hover{background:rgba(124,255,212,.08);transform:translateY(-2px)}
+.hero-visual{display:flex;justify-content:center;align-items:center;position:relative;animation:fadeIn 1s .3s ease both}
+.avatar-ring{width:300px;height:300px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;position:relative}
+.avatar-ring::before{content:'';position:absolute;inset:-20px;border-radius:50%;border:1px dashed rgba(124,255,212,.2);animation:spin 20s linear infinite}
+.avatar-inner{width:240px;height:240px;border-radius:50%;background:linear-gradient(135deg,var(--card),#1a1a2e);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:5rem;font-weight:900;color:var(--accent);border:2px solid rgba(124,255,212,.2)}
+.floating-chip{position:absolute;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.5rem .9rem;font-family:'DM Mono',monospace;font-size:.62rem;color:var(--accent)}
+.chip-1{top:10%;left:-5%;animation:float 4s ease-in-out infinite}
+.chip-2{bottom:20%;right:0;animation:float 4s 1.5s ease-in-out infinite}
+.chip-3{top:60%;left:-10%;animation:float 4s .8s ease-in-out infinite}
+section{padding:6rem 4rem;max-width:1200px;margin:0 auto}
+.section-header{display:flex;align-items:center;gap:1rem;margin-bottom:3.5rem}
+.section-num{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--accent);opacity:.6}
+.section-title{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700}
+.section-line{flex:1;height:1px;background:var(--border)}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:2rem}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:2rem;text-align:center;transition:border-color .3s,transform .3s}
+.stat-card:hover{border-color:rgba(124,255,212,.35);transform:translateY(-4px)}
+.stat-num{font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;color:var(--accent);line-height:1;margin-bottom:.5rem}
+.stat-label{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.skill-category{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.8rem;transition:border-color .3s}
+.skill-category:hover{border-color:rgba(124,255,212,.3)}
+.skill-cat-title{font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem}
+.skill-tags{display:flex;flex-wrap:wrap;gap:.5rem}
+.skill-tag{background:rgba(124,255,212,.06);border:1px solid rgba(124,255,212,.15);color:var(--text);padding:.35rem .8rem;border-radius:4px;font-size:.78rem;font-family:'DM Mono',monospace;transition:all .2s}
+.skill-tag:hover{background:rgba(124,255,212,.15);border-color:var(--accent);color:var(--accent)}
+.timeline{position:relative;padding-left:2rem}
+.timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--accent),transparent)}
+.timeline-item{position:relative;margin-bottom:3rem;padding-bottom:3rem;border-bottom:1px solid var(--border)}
+.timeline-item:last-child{border-bottom:none;margin-bottom:0}
+.timeline-dot{position:absolute;left:-2.4rem;top:.4rem;width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 12px rgba(124,255,212,.5)}
+.timeline-date{font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.1em;color:var(--accent);text-transform:uppercase;margin-bottom:.4rem}
+.timeline-role{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;margin-bottom:.2rem}
+.timeline-company{font-size:.82rem;color:var(--muted);margin-bottom:1rem}
+.timeline-bullets{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.timeline-bullets li{font-size:.88rem;color:#a0a0c0;padding-left:1.2rem;position:relative;line-height:1.6}
+.timeline-bullets li::before{content:'→';position:absolute;left:0;color:var(--accent);font-size:.7rem}
+.projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:2rem;transition:all .3s;position:relative;overflow:hidden}
+.project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));transform:scaleX(0);transition:transform .3s;transform-origin:left}
+.project-card:hover{border-color:rgba(124,255,212,.3);transform:translateY(-4px)}
+.project-card:hover::before{transform:scaleX(1)}
+.project-title{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;margin-bottom:.4rem}
+.project-tech{font-family:'DM Mono',monospace;font-size:.62rem;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.9rem}
+.project-desc{font-size:.85rem;color:#a0a0c0;line-height:1.65}
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.edu-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:2rem;transition:all .3s}
+.edu-card:hover{border-color:rgba(255,107,157,.35);transform:translateY(-4px)}
+.edu-degree{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:.5rem}
+.edu-school{font-size:.82rem;color:var(--muted);margin-bottom:.4rem}
+.edu-date{font-family:'DM Mono',monospace;font-size:.62rem;color:var(--accent2);text-transform:uppercase;letter-spacing:.1em}
+.contact-section{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:4rem;text-align:center;position:relative;overflow:hidden}
+.contact-section::before{content:'';position:absolute;width:400px;height:400px;background:radial-gradient(circle,rgba(124,255,212,.05) 0%,transparent 70%);top:-100px;left:50%;transform:translateX(-50%);pointer-events:none}
+.contact-title{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;margin-bottom:.8rem}
+.contact-sub{color:var(--muted);margin-bottom:2.5rem}
+.contact-links{display:flex;justify-content:center;gap:1.2rem;flex-wrap:wrap}
+.contact-link{display:flex;align-items:center;gap:.5rem;padding:.75rem 1.4rem;background:var(--surface);border:1px solid var(--border);border-radius:8px;text-decoration:none;color:var(--text);font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.05em;transition:all .2s}
+.contact-link:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+footer{text-align:center;padding:2rem;font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.1em;color:var(--muted);border-top:1px solid var(--border)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@media(max-width:900px){nav{padding:1rem 1.5rem}.nav-links{gap:1rem}.hero{grid-template-columns:1fr;padding:7rem 1.5rem 3rem}.hero-visual{display:none}section{padding:4rem 1.5rem}.stats-grid{grid-template-columns:1fr 1fr}.skills-grid,.projects-grid,.edu-grid{grid-template-columns:1fr}.contact-section{padding:2.5rem 1.5rem}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-logo">S.G</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="hero-text">
+    <div class="hero-tag">Open to Internship Opportunities</div>
+    <h1 class="hero-name">Sana<br><span>Ghazali</span></h1>
+    <p class="hero-role">// Business Computing Student &amp; Developer</p>
+    <p class="hero-bio">Business Computing student at Lebanese University with hands-on experience in ASP.NET, C#, SQL, and full-stack development. Passionate about building real-world software solutions.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="avatar-ring">
+      <div class="avatar-inner">SG</div>
+    </div>
+    <div class="floating-chip chip-1">ASP.NET / C#</div>
+    <div class="floating-chip chip-2">SQL Server</div>
+    <div class="floating-chip chip-3">AngularJS</div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="section-header reveal">
+    <span class="section-num">01</span>
+    <h2 class="section-title">About Me</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="stats-grid">
+    <div class="stat-card reveal"><div class="stat-num">3+</div><div class="stat-label">Years Coding</div></div>
+    <div class="stat-card reveal"><div class="stat-num">2</div><div class="stat-label">Active Roles</div></div>
+    <div class="stat-card reveal"><div class="stat-num">10+</div><div class="stat-label">Technologies</div></div>
+  </div>
+  <div class="stat-card reveal" style="text-align:left;padding:2.5rem">
+    <p style="font-size:1rem;line-height:1.85;color:#b0b0d0">I'm a second-year Business Computing student at the Faculty of Technology, Lebanese University. I combine a strong theoretical foundation with practical industry exposure — currently interning at Vanrise as a web developer and teaching Cambridge A-Level Computer Science. I'm driven by a love for clean code, efficient systems, and the challenge of turning ideas into functional software.</p>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="section-header reveal">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Skills</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-category reveal">
+      <div class="skill-cat-title">Programming Languages</div>
+      <div class="skill-tags">
+        <span class="skill-tag">C#</span><span class="skill-tag">C</span><span class="skill-tag">Python</span><span class="skill-tag">PHP</span><span class="skill-tag">JavaScript</span><span class="skill-tag">SQL</span><span class="skill-tag">HTML</span>
+      </div>
+    </div>
+    <div class="skill-category reveal">
+      <div class="skill-cat-title">Frameworks &amp; Tools</div>
+      <div class="skill-tags">
+        <span class="skill-tag">ASP.NET</span><span class="skill-tag">AngularJS</span><span class="skill-tag">OOP</span><span class="skill-tag">Git</span><span class="skill-tag">Visual Studio</span><span class="skill-tag">Linux</span>
+      </div>
+    </div>
+    <div class="skill-category reveal">
+      <div class="skill-cat-title">Networking</div>
+      <div class="skill-tags">
+        <span class="skill-tag">WAN / LAN</span><span class="skill-tag">Cisco Packet Tracer</span><span class="skill-tag">DSL Router Config</span><span class="skill-tag">Network Admin</span>
+      </div>
+    </div>
+    <div class="skill-category reveal">
+      <div class="skill-cat-title">Soft Skills &amp; Languages</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Problem-Solving</span><span class="skill-tag">Communication</span><span class="skill-tag">Teamwork</span><span class="skill-tag">Planning &amp; Org</span><span class="skill-tag">Arabic — Native</span><span class="skill-tag">English — Fluent</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="section-header reveal">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Experience</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Feb 2026 — Present</div>
+      <div class="timeline-role">Web Development Intern</div>
+      <div class="timeline-company">Vanrise Company · Beirut (Online)</div>
+      <ul class="timeline-bullets">
+        <li>Develop RESTful Web APIs using ASP.NET and C#.</li>
+        <li>Design and optimize MSSQL databases with efficient SQL queries.</li>
+        <li>Build dynamic AngularJS components for telecom applications.</li>
+        <li>Apply debugging and testing techniques to resolve performance issues.</li>
+      </ul>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Feb 2026 — Present</div>
+      <div class="timeline-role">Computer Science Instructor</div>
+      <div class="timeline-company">Dream Minds · Beny</div>
+      <ul class="timeline-bullets">
+        <li>Teach Cambridge AS &amp; A Level Computer Science (9618).</li>
+        <li>Deliver lessons on algorithms, data structures, and programming.</li>
+        <li>Guide students in computational thinking and exam preparation.</li>
+      </ul>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">Feb 2024 — Feb 2025</div>
+      <div class="timeline-role">Customer Service &amp; Accounting Associate</div>
+      <div class="timeline-company">Computer Clinic Company · Aley-Ainab</div>
+      <ul class="timeline-bullets">
+        <li>Performed data entry and supported invoice processing using digital tools.</li>
+        <li>Gained experience in structured data, document management, and accounting systems.</li>
+        <li>Managed product information and supported inventory accuracy.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-header reveal">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Projects</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card reveal">
+      <div class="project-title">Personal Portfolio Website</div>
+      <div class="project-tech">HTML · CSS · JavaScript · Mar 2025</div>
+      <p class="project-desc">A fully responsive personal portfolio built from scratch. Applied semantic structure, accessibility best practices, and optimized layout for performance and cross-device compatibility.</p>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-title">Inventory Management System</div>
+      <div class="project-tech">C# · OOP · SQL Server · Oct 2025</div>
+      <p class="project-desc">University project supervised by Dr. Nadine Al Abdala. Implemented a full CRUD system with a relational database schema, input validation, and exception handling to ensure data integrity.</p>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="section-header reveal">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Education</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <div class="edu-degree">B.Sc. Business Computing</div>
+      <div class="edu-school">Faculty of Technology, Lebanese University</div>
+      <div class="edu-date">Sep 2024 — Expected Sep 2027</div>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-degree">High School Diploma</div>
+      <div class="edu-school">Baisour Official Secondary School</div>
+      <div class="edu-date">2021 — 2022</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-section reveal">
+    <h2 class="contact-title">Let's Connect</h2>
+    <p class="contact-sub">Open to internship opportunities, collaborations, and conversations.</p>
+    <div class="contact-links">
+      <a href="tel:+96181617023" class="contact-link">📞 +961 81 617 023</a>
+      <a href="mailto:ghazalisana15@gmail.com" class="contact-link">✉️ ghazalisana15@gmail.com</a>
+      <a href="https://linkedin.com/in/sana-nouraldeen-ghazali" target="_blank" class="contact-link">💼 LinkedIn Profile</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Sana Nouraldeen Ghazali · Lebanese University · Faculty of Technology · Business Computing</p>
+</footer>
+
+<script>
+const reveals=document.querySelectorAll('.reveal');
+const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.08});
+reveals.forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
